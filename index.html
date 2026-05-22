@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>坂上直哉 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>坂上直哉 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#k1">1. 一般財団法人地域・教育魅力化プラットフォーム</a>
+  <a href="#k2">2. 株式会社いつも</a>
+  <a href="#k3">3. 株式会社hacomono</a>
+</nav>
+<main>
+
+<div class="card" id="k1"><div class="card-inner">
+  <div class="badges"><span class="badge">教育戦略ディレクター</span><span class="badge badge-blue">一般財団法人</span></div>
+  <div class="co-name">一般財団法人地域・教育魅力化プラットフォーム</div>
+  <div class="co-url"><a href="" target="_blank"></a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>設立</th><td>2017年3月</td></tr><tr><th>従業員数</th><td>35人</td></tr><tr><th>業種</th><td>サービス・レジャー</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>NPO・地域実践の教育改革を国レベルへ拡張する注目ポジション</li><li>都道府県単位での教育改革構想の設計から実行まで統括可能</li><li>20名前後のチームマネジメントを行う事業責任者候補</li><li>教育DX推進や地域創生と教育改革を同時に推進できる</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">地域・教育魅力化プラットフォームは、2017年に設立された一般財団法人で、地域と教育の魅力化に取り組んでいます。従業員数35人の組織で、教育改革を通じた地方創生を推進しています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>地域・教育魅力化プラットフォームは、2017年に設立された一般財団法人で、地域と教育の魅力化に取り組んでいます。従業員数35人の組織で、教育改革を通じた地方創生を推進しています。</p><p>元リクルート出身者が中心となり、これまで一部のNPO・地域実践で行われていた教育改革を、国レベルへと拡張する取り組みを行っています。教育/介護/保育、地方創生を軸とした事業展開を行っており、地域経営インフラの再設計を目指しています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 教育戦略ディレクター</div>
+          <div class="job-preview">都道府県単位での教育改革プロジェクトの戦略設計〜実行まで統括し、20名前後のチーム横断的マネジメントを担う事業責任者候補</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>＜一部のNPO・地域実践でやっていた教育改革を、国レベルへ拡張していっています。地域経営インフラ&quot;として再設計することが出来るポジションです＞</strong></p><p>都道府県‧⾃治体‧教育委員会と連携し、⾼校教育改⾰プロジェクトの戦略設計〜実⾏までを統括するポジションです。単なる学校伴⾛ではなく、地域全体の教育構想を描き、⾏政‧学校‧地域産業‧⺠間企業など多様なステークホルダーを巻き込みながら、教育改⾰を推進していただきます。また、本ポジションはプレイヤー業務に留まらず、20名前後の営業‧プロジェクト推進‧伴⾛チームを横断的にマネジメントし、案件獲得‧品質管理‧組織づくりまで担う事業責任者候補の位置づけです。</p><h3>■ 業務内容</h3><h4>1. 教育改革プロジェクトの戦略設計</h4><ul><li>都道府県単位での教育改革構想の設計</li><li>KPI設計／ロードマップ策定</li><li>高校魅力化・探究学習等の施策立案</li><li>教育DX推進</li><li>成果検証／改善提案</li></ul><h4>2. 都道府県教育委員会との折衝</h4><ul><li>都道府県教育委員会との協議・提案</li><li>教育行政との合意形成</li><li>行政向け提案資料作成</li><li>次年度提案／案件継続提案</li></ul><h4>3. 調査・分析</h4><ul><li>高校・自治体ヒアリング</li><li>地域課題分析（人口動態・産業構造等）</li><li>アンケート設計／分析</li><li>定量・定性データ分析</li><li>有識者ヒアリング</li></ul><h4>4. 組織・チームマネジメント</h4><ul><li>営業・デリバリーチーム（20名前後）のマネジメント</li><li>業務委託メンバーを含む体制構築</li><li>プロジェクト品質管理</li><li>KPIマネジメント</li><li>メンバー育成・評価</li><li>ナレッジマネジメント</li></ul><h3>■ このポジションの特徴</h3><ul><li>&quot;学校単体&quot;ではなく、都道府県単位のビジョン設計を行う仕事</li><li>戦略設計と現場伴走の両方に関われる</li><li>行政・教育・地域産業を横断する仕事</li><li>正解のない社会課題を構造から解く仕事</li><li>自治体との信頼関係が次の案件獲得につながる</li><li>地域創生と教育改革を同時に推進できる</li></ul><h3>応募資格</h3><p><span class='tag tag-must'>MUST</span></p><ul><li>以下いずれかの経験をお持ちの方<ul><li>公共系コンサルティング経験</li><li>教育行政／自治体関連業務経験</li><li>教育事業の企画・推進経験</li><li>シンクタンク／リサーチ業務経験</li><li>教育スタートアップ等での事業推進経験</li></ul></li><li>10名以上の組織マネジメント経験</li><li>複数プロジェクトの統括経験</li><li>行政・自治体との折衝経験</li><li>課題設定・構造化能力</li><li>仮説思考</li><li>プロジェクトマネジメント</li><li>ステークホルダー調整</li><li>ファシリテーション</li><li>提案資料作成能力</li><li>定量／定性分析能力</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>文部科学省／教育委員会経験</li><li>公共領域コンサルティングファーム経験</li><li>地方創生関連事業経験</li><li>教育DX推進経験</li><li>PMO構築経験</li><li>業務委託組織マネジメント経験</li><li>教育政策関連業務経験</li></ul><h3>求める人物像</h3><ul><li>複雑な課題を構造的に整理できる方</li><li>抽象度の高い議論を具体施策に落とし込める方</li><li>戦略だけでなく現場にも入り込める方</li><li>行政・教育現場から信頼を得られる方</li><li>プレイヤーではなく「組織で成果を出す」視点を持つ方</li><li>品質基準を引き上げられる方</li><li>カオスな状況でも前進できる方</li><li>教育・地域・社会課題への関心が高い方</li></ul><h3>年収・待遇</h3><p>年収：600万円〜1000万円（経験・能力に応じて応相談）</p>
+        <div class="meta-pills"><span class="pill">📍 東京・島根</span><span class="pill">🏠 フルリモート可</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 みらいハイスクール／事務局長</div>
+          <div class="job-preview">教育委員会とともに、みらいハイスクール構想の実現に向けた戦略・経営ガバナンス構築の責任者（事務局長候補）</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>教育委員会とともに、みらいハイスクール構想の実現に向けた戦略・経営ガバナンス構築の責任者（事務局長候補）として、運営戦略、教育政策の現場実装、行政折衝、および中長期の事業計画策定を統括します。本ポジションは、学校に係るスキームの戦略的設計から、教育委員会等との高度な制度調整まで、教育改革を構造レベルから推進する&quot;経営・戦略サイド&quot;の役割です。</p><h3>■ 業務内容</h3><h4>1. 戦略策定・経営管理</h4><ul><li>学校のあり方の戦略的設計</li><li>中長期戦略および事業計画の策定</li><li>予算管理、資金調達支援</li><li>理事会・経営会議の運営</li><li>経営数値のモニタリング・KPI設計</li></ul><h4>2. 対外連携・行政対応（最重要業務）</h4><ul><li>文部科学省・経済産業省・自治体・県教育委員会との高度な折衝</li><li>各種制度・認可対応、学校運営モデルへの落とし込み</li><li>外部パートナー（企業・地域団体・出資者等）とのアライアンス構築・調整</li></ul><h4>3. 教育戦略・構造設計</h4><ul><li>オンライン × 探究 × 地域連携を軸とした新しい教育モデルの構造設計</li><li>教育DX推進</li><li>新規プロジェクトの企画・立案</li></ul><h3>応募資格</h3><p><span class='tag tag-must'>MUST</span></p><ul><li>以下いずれかの経験<ul><li>コンサルティングファームでの公共／教育／経営戦略領域のコンサルティング経験</li><li>文部科学省・経済産業省などの省庁／行政／公共領域での政策立案や事業推進経験（5〜7年程度を想定）</li><li>教育スタートアップや大手教育事業での経営企画・事業責任者経験</li></ul></li><li>抽象的な課題をブレイクダウンする「課題構造化能力」および「戦略設計力」</li><li>法令・制度を理解し、官民を跨ぐ高度なステークホルダー調整力・行政折衝力</li><li>プロジェクトマネジメント能力</li><li>数値管理・財務の基礎知識</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>文部科学省等の省庁において、法令改定や政策立案に直接携わった経験</li><li>学校法人の設立、または新規事業立ち上げ（ゼロイチ）経験</li><li>資金調達やガバナンス体制構築の経験</li></ul><h3>求める人物像</h3><ul><li>教育を現場レベルだけでなく、「制度・構造」から変えたい方</li><li>カオスな立ち上げ環境（法的な建て付けの検討など）を戦略的に楽しめる方</li><li>理念だけでなく、制度に基づいた社会実装までやり切れる方</li></ul><h3>年収・待遇</h3><p>年収：600万円〜1000万円（経験・能力に応じて応相談）</p>
+        <div class="meta-pills"><span class="pill">📍 東京・島根</span><span class="pill">🏠 フルリモート可</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"></div>
+</div></div>
+
+<div class="card" id="k2"><div class="card-inner">
+  <div class="badges"><span class="badge">地域共創プロデューサー</span><span class="badge badge-blue">上場企業</span></div>
+  <div class="co-name">株式会社いつも</div>
+  <div class="co-url"><a href="https://itsumo365.co.jp/" target="_blank">https://itsumo365.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>設立</th><td>2007年2月14日</td></tr><tr><th>資本金</th><td>7億5404万円</td></tr><tr><th>従業員数</th><td>258名（アルバイト含む　※2025年3月末時点）</td></tr><tr><th>業種</th><td>マスコミ・広告・デザイン</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>「人的資本経営2025 ゴールド」受賞企業でプロフェッショナルを尊重</li><li>地域の事業をECの力で成長させる新規領域</li><li>自治体×ECの希少な経験が積める成長機会</li><li>戦略立案から実行まで一気通貫で担当可能</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">株式会社いつもは、2007年設立のECコンサルティング企業で、中小・大手メーカー向けのEC総合支援事業を展開しています。資本金7億5404万円、従業員数258名の規模で、EC戦略から運営まで一貫サポートを提供しています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>株式会社いつもは、2007年設立のECコンサルティング企業で、中小・大手メーカー向けのEC総合支援事業を展開しています。資本金7億5404万円、従業員数258名の規模で、EC戦略から運営まで一貫サポートを提供しています。</p><p>EC戦略の立案からサイト構築・運営、デジタルマーケ、物流フルフィルメントまでECバリューチェーンの全てを一貫してサポートし、「人」と「テクノロジー」を組み合わせたマルチチャネル展開を支援しています。近年は地域共創事業にも注力し、自治体や地域事業者と連携した新たな取り組みを推進しています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 地域共創プロデューサー（PM／事業開発）</div>
+          <div class="job-preview">地方の魅力的な商品をECの力で「売れる状態」に変え、自治体や地域事業者と連携した事業を成立させる</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <h3>◆ ミッション：地域の事業を&quot;売れる仕組み&quot;で成長させる</h3><p>地方には魅力的な商品や技術がある一方で、販路や売り方が整っていないことで、本来の価値を発揮できていないケースが多くあります。</p><p>私たちの役割は、それらをECの力で「売れる状態」に変え、単発で終わらない&quot;継続できる事業&quot;として成立させることです。</p><p>自治体や地域事業者と連携し、商品設計から販路、運用体制までをゼロから構築し、実際に売上が立つ状態まで責任を持って支援します。</p><h3>◆ 業務内容：戦略立案から実行まで一気通貫で担当</h3><p>プロジェクトマネージャー（PM）兼、事業開発ポジションとして以下を担います。</p><h4>【事業戦略・企画提案】</h4><ul><li>自治体や地域事業者の課題整理</li><li>どの商品をどう売るかの設計</li><li>プロポーザルや提案資料の作成</li></ul><h4>【EC事業の立ち上げ・運用】</h4><ul><li>商品企画、価格設計、販路選定</li><li>広告や販促施策の実行</li><li>売上データの分析と改善</li></ul><h4>【運用体制の構築】</h4><ul><li>物流、CS、オペレーション設計</li><li>地域に合わせた現実的な運用体制の構築</li><li>社内外メンバーとの連携</li></ul><h4>【プロジェクトマネジメント】</h4><ul><li>全体進行管理</li><li>自治体や生産者との折衝</li><li>定期的な現地訪問による関係構築</li></ul><p>※戦略だけでなく、実際に手を動かして事業を成立させるポジションです</p><h3>◆ この仕事の魅力</h3><h4>事業を「作って終わり」ではなく「伸ばす」まで担える</h4><p>提案だけで終わらず、自ら関わった事業を実際に売上として成立させるところまで責任を持ちます。</p><h4>「行政×EC」の希少な経験が積める</h4><p>自治体案件を民間のスピードで推進する経験は市場でもまだ少なく、専門性の高いキャリアになります。</p><h4>成果が分かりやすい</h4><p>売上や事業成長として結果が出るため、自分の仕事の影響を実感できます。</p><h4>裁量を持って事業を推進できる</h4><p>新規領域のため、決まった型をこなすだけではなく、自ら考えて前に進める余地があります。</p><h4>成功事例を「型化」し、横展開できる</h4><p>個別の成功に留まらず、他地域でも再現できる仕組みとして展開していくフェーズに関われます。</p><h3>応募資格</h3><p><span class='tag tag-must'>MUST</span></p><ul><li>法人向けの課題解決型業務の経験を有する方（営業・コンサルティング・PMなど）</li><li>高い調整能力（複数のステークホルダーの間に立ち、合意形成してきた経験）</li><li>地域の課題解決に対し、強い関心と誠実な姿勢をお持ちの方</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>自治体向けの提案、入札業務、プロポーザルのリード経験</li><li>EC・D2C業界に関する知識、またはマーケティングや商品企画の実務経験</li></ul><h3>求める人物像</h3><h4>「自ら課題を見つけ、周囲を巻き込みながら前に進められる方」</h4><p>決まった仕事を回すだけでは、地域の課題は解決しません。リーダー候補には、自ら案件を獲りに行き、分からないことは社内リソースを使い、最短距離で解決に辿り着く「主体的な推進力」を期待しています。</p><h4>「多様なステークホルダーの間で合意形成をリードできる方」</h4><p>行政、民間、地域の事業者、そして共にプロジェクトを動かすパートナー企業。多くのステークホルダーの間に立ち、関係者の言葉を右から左へ流すだけの伝言ゲームではなく、全員が納得できる「三方よし」の着地点を自ら設計し、納得させて動かす「調整力」が不可欠です。</p><h4>「データと現場の両方を重視し、実行までやり切れる方」</h4><p>オフィスでの分析だけでは答えは出ません。マーケティングの数字と、現場の物流や梱包作業の実情。その両方を肌で感じ、自ら手を動かして課題を取り除く。その「誠実なプロセス」こそが、質の高い戦略を生み、地域からの信頼を支える基盤であると私たちは考えています。</p><h3>年収・待遇</h3><p>想定年収：600万円～950万円<br>月給：430,000円～680,000円<br>基本給：339,700円～659,900円<br>固定残業代（35時間/月分）：90,300円～111,300円　※500万円～750万円の場合<br>深夜固定残業代（20時間/月分）：15,700円～20,100円　※750万円～950万円の場合</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">💰 600-950万円</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://itsumo365.co.jp/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://www.youtube.com/watch?v=79fyrNWhpV8" target="_blank">📺 Youtube</a></div>
+</div></div>
+
+<div class="card" id="k3"><div class="card-inner">
+  <div class="badges"><span class="badge">公共事業責任者</span><span class="badge badge-blue">成長企業</span></div>
+  <div class="co-name">株式会社hacomono</div>
+  <div class="co-url"><a href="" target="_blank"></a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>設立</th><td>2013年7月</td></tr><tr><th>資本金</th><td>100百万円</td></tr><tr><th>従業員数</th><td>285名※2025年10月時点</td></tr><tr><th>業種</th><td>IT・通信・インターネット</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>経営直下で日本の公共DXをリードする司令塔ポジション</li><li>フィットネス・教育・観光まで横断した公共ソリューション設計</li><li>省庁・自治体との政策提言や大型プロジェクトスキーム構築</li><li>年収1,200万円〜1,800万円の高水準待遇</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">株式会社hacomonoは、2013年設立のSaaS企業で、月額型店舗向けの会員管理・予約・キャッシュレス決済システム「hacomono」を開発・販売しています。資本金100百万円、従業員数285名の成長企業です。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>株式会社hacomonoは、2013年設立のSaaS企業で、月額型店舗向けの会員管理・予約・キャッシュレス決済システム「hacomono」を開発・販売しています。資本金100百万円、従業員数285名の成長企業です。</p><p>現在、フィットネスクラブや運動スクール等の民間施設だけでなく、自治体が運営する公共運動施設、学校教育（部活動DX）、さらには地域創生（民泊・観光DX）へとドメインを拡大。会員管理システム「hacomono」に加え、消費者向けソリューション「FitFits」も提供し、総合的なスポーツ・フィットネス業界のDXを推進しています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 ※confidential※ 公共事業責任者</div>
+          <div class="job-preview">経営直下で公共DXの司令塔として、省庁・自治体との戦略的アライアンスを統括し事業成長エンジンを構築</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <h3>＜募集背景＞</h3><p>hacomonoは現在、フィットネスクラブや運動スクール等の民間施設だけでなく、自治体が運営する公共運動施設、学校教育（部活動DX）、さらには地域創生（民泊・観光DX）へとドメインを拡大させています。これまでは各領域で個別に推進してきましたが、「公共」という大きな括りで行政・自治体とのアライアンスを統括し、日本の公共DXをリードする司令塔が必要です。経営直下のポジションとして、公共事業の全体戦略を描き、実行までを担う責任者を募集します。</p><h3>＜ミッション＞</h3><p><strong>「公共領域に最適化したマーケット戦略・セールス戦略を描き、hacomonoの公共事業を継続的に伸ばす成長エンジンをつくる」</strong></p><ul><li>公共領域の市場を構造化し、狙うべきセグメント（例：指定管理／学校・部活動／観光・地域振興）ごとの優先順位と勝ち筋を定義する</li><li>省庁・自治体・関連団体の意思決定プロセスを踏まえた、アプローチ設計（提案テーマ、提携スキーム、入札・公募対応の型）を確立する</li><li>重点エリア・重点自治体の開拓計画を策定し、パイプラインを作りながら大型案件の受注と再現性ある拡大を実現する</li><li>事業成長に必要な体制（営業・CS・パートナー）を設計し、現場オペレーションに落とし込んで推進する</li></ul><h3>＜お任せする仕事内容＞</h3><h4>公共事業全体の戦略立案</h4><p>指定管理、部活動、地域振興等の各プロジェクトを統合した事業ロードマップの策定</p><h4>ロビーイング・官民連携</h4><p>中央省庁や自治体首長、キーマンとのリレーション構築および政策提言</p><h4>ビジネスモデルの設計</h4><p>単なる月額利用料モデルに留まらない、補助金や交付金を活用した大規模プロジェクトのスキーム構築</p><h4>組織組成・マネジメント</h4><p>公共領域に特化したセールス・カスタマーサクセス戦略、組織マネジメント</p><h4>プロダクトへのフィードバック</h4><p>公共領域特有の要件（アクセシビリティ、セキュリティ等）をプロダクトチームへ連携し、開発優先順位を決定</p><h3>＜やりがい・魅力＞</h3><ul><li>単一プロダクトの営業ではなく、部活動DX・民泊・観光まで含めたスポーツツーリズム、施設DXなど横断した公共ソリューションを設計できる</li><li>hacomonoは会員管理・予約・決済システムというB2Bに加えて、「FitFits」という2Cソリューションも提供しており、その自治体向けソリューションの企画にも携わることができる</li><li>指定管理事業者や部活動への指導者派遣団体にもなる、大手フィットネスクラブ、Jリーグなどのプロスポーツ団体などとの深いリレーションの中で業界団体と共に絵を描くことができる</li><li>経営直下でCEOと議論する機会が多い</li></ul><h3>応募資格</h3><p><span class='tag tag-must'>MUST</span></p><ul><li>官公庁・自治体向けビジネス（GovTech, コンサルティング, ITソリューション等）での事業責任者、または営業責任者経験（2年以上）</li><li>自治体の意思決定プロセス（予算化、議会、入札、指定管理制度等）に対する理解</li><li>構想だけでなく、率先垂範するマネジメント経験</li><li>ゼロから市場を創出するための戦略的思考能力と実行力</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>中央省庁（経産省、文科省、厚労省等）との折衝経験や政策提言の経験</li><li>SaaSビジネスにおける事業グロースの経験</li><li>P/L責任を持ち、組織をマネジメントした経験</li></ul><h3>求める人物像</h3><h4>「青臭い志」と「泥臭い実行力」</h4><p>社会課題を解決したいという高い志と、行政の複雑な調整を厭わない忍耐力を併せ持つ方</p><h4>高い抽象具体往復能力</h4><p>経営層のビジョンを理解し、現場のオペレーションにまで落とし込める方</p><h3>年収・待遇</h3><p>年収1,200万円〜1,800万円</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 フルリモート可</span><span class="pill">✅ 副業条件付き可</span><span class="pill">💰 1,200-1,800万円</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが坂上直哉 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
